@@ -1,0 +1,18 @@
+box: ami-7f97d816
+box-type: ami
+build:
+  steps:
+    - script:
+        name: docker build
+        code: |
+          cd $WERCKER_SOURCE_DIR
+          sudo docker version
+          container_id=$(sudo docker build -t mies/rethinkdb .)
+          sudo docker export $container_id > $WERCKER_OUTPUT_DIR
+deploy:
+  steps:
+     - s3sync:
+      key-id: $KEY
+      key-secret: $SECRET
+      bucket-url: $BUCKET
+      source-dir: $SOURCE
