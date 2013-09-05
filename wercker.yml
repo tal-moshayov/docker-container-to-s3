@@ -11,8 +11,8 @@ build:
           sudo docker export $container_id > $WERCKER_OUTPUT_DIR
 deploy:
   steps:
-     - s3sync:
-      key-id: $KEY
-      key-secret: $SECRET
-      bucket-url: $BUCKET
-      source-dir: $SOURCE
+    - s3sync:
+        key-id: $KEY
+        key-secret: $SECRET
+        bucket-url: $BUCKET
+        source-dir: $SOURCE
