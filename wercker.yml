@@ -8,7 +8,7 @@ build:
           cd $WERCKER_SOURCE_DIR
           sudo docker version
           container_id=$(sudo docker build -t mies/rethinkdb .)
-          sudo docker export $container_id > $WERCKER_OUTPUT_DIR
+          sudo docker export $container_id > $WERCKER_OUTPUT_DIR/container.tar
 deploy:
   steps:
     - s3sync:
