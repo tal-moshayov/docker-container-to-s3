@@ -3,12 +3,12 @@ box-type: ami
 build:
   steps:
     - script:
-        name: docker build
+        name: docker build and export
         code: |
           cd $WERCKER_SOURCE_DIR
-          sudo docker version
-          container_id=$(sudo docker build -t mies/rethinkdb .)
-          sudo docker export $container_id > $WERCKER_OUTPUT_DIR/container.tar
+          sudo docker build -t mies/rethinkdb .
+          RETHINK_ID=$(sudo docker run -d mies/rethinkdb)
+          sudo docker export $RETHINK_ID > $WERCKER_OUTPUT_DIR/container.tar
 deploy:
   steps:
     - s3sync:
