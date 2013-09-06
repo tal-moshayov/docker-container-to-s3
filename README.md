@@ -1,6 +1,6 @@
 docker-container-to-s3
 ======================
 
-wercker status:
+example repo pushing docker containers to s3
 
 
